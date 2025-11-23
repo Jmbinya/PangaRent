@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PangaRent - Simple Apartment Management for Small Landlords</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .tagline {
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        
+        /* Waitlist Form */
+        .waitlist-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .waitlist-form h3 {
+            color: #1E40AF;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #2563EB;
+        }
+        
+        .cta-button {
+            background: #10B981;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #059669;
+        }
+        
+        .early-bird {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 20px;
+            background: #F9FAFB;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 50px;
+            color: #1E40AF;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #1E40AF;
+            margin-bottom: 10px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .problem h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #DC2626;
+        }
+        
+        .problem-list {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+        
+        .problem-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #FEE2E2;
+            border-left: 4px solid #DC2626;
+            border-radius: 5px;
+        }
+        
+        .problem-list li::before {
+            content: "❌ ";
+            margin-right: 10px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 20px;
+            background: #F9FAFB;
+            text-align: center;
+        }
+        
+        .pricing h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #1E40AF;
+        }
+        
+        .pricing-card {
+            background: white;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .price {
+            font-size: 3em;
+            color: #10B981;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-detail {
+            color: #6B7280;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .pricing-features li::before {
+            content: "✓ ";
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1F2937;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+        }
+        
+        .contact-info a {
+            color: #10B981;
+            text-decoration: none;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #D1FAE5;
+            color: #065F46;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .waitlist-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="logo">PangaRent</div>
+            <h1>Stop Chasing Rent Payments</h1>
+            <p>Simple apartment management for small landlords in Kenya</p>
+            <p class="tagline">"Panga Your Rent, Simplify Your Life"</p>
+            
+            <!-- Waitlist Form -->
+            <div class="waitlist-form">
+                <div class="early-bird">
+                    🎉 First 50 landlords get 50% off for 6 months!
+                </div>
+                <h3>Join the Waitlist</h3>
+                <form id="waitlistForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Kamau">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (WhatsApp) *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="0712345678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="units">How many rental units do you manage? *</label>
+                        <select id="units" name="units" required>
+                            <option value="">Select...</option>
+                            <option value="1-2">1-2 units</option>
+                            <option value="3-5">3-5 units</option>
+                            <option value="6-10">6-10 units</option>
+                            <option value="11+">11+ units</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Hidden field to track form source -->
+                    <input type="hidden" name="_subject" value="New PangaRent Waitlist Signup!">
+                    <input type="hidden" name="_next" value="#success">
+                    
+                    <button type="submit" class="cta-button">Join Waitlist - It's Free!</button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    ✓ Success! You're on the list. We'll contact you via WhatsApp soon!
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Tired of These Problems?</h2>
+            <ul class="problem-list">
+                <li>Chasing tenants every month for rent via calls and WhatsApp</li>
+                <li>Lost receipts and payment records in notebooks or Excel</li>
+                <li>Forgetting who paid and who still owes you money</li>
+                <li>Spending hours on rent tracking instead of finding good tenants</li>
+                <li>No proof of payment when tenants dispute charges</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>How PangaRent Helps You</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Automated SMS Reminders</h3>
+                    <p>Send rent reminders automatically 3-5 days before due date. No more awkward phone calls.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>M-PESA Tracking</h3>
+                    <p>Record M-PESA payments instantly and match them to the right tenant automatically.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧾</div>
+                    <h3>Digital Receipts</h3>
+                    <p>Generate and SMS receipts to tenants immediately. No more disputes about payments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Payment Dashboard</h3>
+                    <p>See at a glance who paid, who owes, and how much. All on your phone.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Tenant Database</h3>
+                    <p>Keep all tenant info organized in one place. No more lost contact details.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Simple Reports</h3>
+                    <p>Monthly income, vacancy tracking, and arrears reports. Know your numbers instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Simple, Affordable Pricing</h2>
+            <div class="pricing-card">
+                <h3>Pay Only for What You Use</h3>
+                <div class="price">KES 80</div>
+                <div class="price-detail">per unit per month</div>
+                <p style="margin-bottom: 20px;">Example: 5 units = KES 400/month</p>
+                
+                <ul class="pricing-features">
+                    <li>First 2 units FREE forever</li>
+                    <li>Free 30-day trial for all units</li>
+                    <li>No setup fees</li>
+                    <li>No long-term contracts</li>
+                    <li>Cancel anytime</li>
+                </ul>
+                
+                <a href="#waitlistForm" class="cta-button" style="display: inline-block; text-decoration: none;">Join Waitlist Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">PangaRent</div>
+            <p>Making property management simple for small landlords in Kenya</p>
+            <div class="contact-info">
+                <p>📱 WhatsApp: <a href="#">0713726166</a></p>
+                <p>📧 Email: <a href="#">jmbinya39@gmail.com</a></p>
+                <p>📍 Nairobi, Kenya</p>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.7;">© 2024 PangaRent. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Formspree form handling with better UX
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            // Let Formspree handle the submission
+            // Show loading state on button
+            const button = this.querySelector('.cta-button');
+            const originalText = button.textContent;
+            button.textContent = 'Submitting...';
+            button.disabled = true;
+            
+            // Re-enable button after submission
+            setTimeout(function() {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 3000);
+        });
+        
+        // Check if redirected back with success
+        if (window.location.hash === '#success') {
+            document.getElementById('successMessage').style.display = 'block';
+            // Clear the hash
+            history.replaceState(null, null, ' ');
+        }
+    </script>
+</body>
+</html>
